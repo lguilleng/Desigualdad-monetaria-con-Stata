@@ -344,6 +344,40 @@ Atkinson (1970) propone un índice flexible que permite al analista elegir las p
 
 $A=1- \frac{[\frac{1}{N}\sum_{i}x_i^{1-\epsilon}]^{\frac{1}{1-\epsilon}}}{\mu}, \epsilon &ge; 0, \epsilon &ne; 1$
 
+El parámetro $\epsilon$ se interpreta como el grado de “aversión a la desigualdad”: a medida que aumenta el valor de ε, se otorga una ponderación más alta a las transferencias en el extremo inferior de la distribución. Un valor de ε  = 0 implica indiferencia ante la desigualdad y por tanto resulta en A = 0. Cuando ε  tiende a infinito, el índice es sensible solo a la situación del individuo con menores ingresos. Es común calcular este índice con valores de ε de 0.5, 1.0 y 1.5.
 
+El índice se puede interpretar además haciendo uso de la noción de ingreso “igualmente distribuido”: si la desigualdad es alta (por ejemplo, A = 0.90), bastaría con que todos reciban el 10% (1-A = 0.10) del ingreso medio para alcanzar el mismo nivel de bienestar actual; por el contrario, si A es bajo (A=0.20), el ingreso a equidistribuir no es mucho menor que el ingreso medio observado (en este caso, 1-A = 80%).
 
+```
+* parametro aversión desigualdad
+local epsilon = 0.5
 
+summ ipcm [w=facpob] if ipcm>0
+local obs = r(sum_w)
+local media = r(mean)
+drop termino
+
+* epsilon == 1
+if `epsilon' == 1 {
+generate termino = ln(ipcm/`media')
+summ termino [w=facpob]
+local atk = 1 - exp(1/`obs'*r(sum))}
+* epsilon != 1
+else {
+generate termino = (ipcm/`media') ^ (1-`epsilon')
+summ termino [w=facpob]
+local atk = 1 - (r(sum)/`obs') ^ (1/(1-`epsilon'))}
+
+display as text "Atkinson(e=`epsilon') = " as result `atk‘
+
+Atkinson(e=.5) = .13758118
+```
+
+### Comandos en Stata para estimar índices de desigualdad
+
+#### INEQUAL
+Muestra las siguientes medidas: desviación media relativa, coeficiente de variación, desviación estándar de los registros, índice de Gini, índice de Mehran, índice de Piesch, índice de Kakwani, índice de entropía de Theil y desviación media logarítmica.
+
+#### INEQUAL7
+Calcula una serie de medidas de desigualdad. Es una versión revisada y mejorada de "inequal".
+Las medidas de desigualdad calculadas son: la "desviación media relativa", el "coeficiente de variación", la "desviación estándar de los registros", el "índice de Gini", el "índice de Mehran", el "índice de Piesch", el "índice de Kakwani", el "índice de entropía de Theil", la "desviación media logarítmica" y la "medida de entropía generalizada" con parámetros de sensibilidad -1 y 2.
