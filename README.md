@@ -321,4 +321,7 @@ Theil (1967) propuso un indicador para medir la desigualdad con base en el conce
 
 $T=\frac{1}{N}\sum_{i}\frac{x_i}{\mu}ln(\frac{x_i}{\mu})$
 
+$T \epsilon [0, lnN]$
+
+donde: $N$ = número total de individuos; $x_i$ = ingreso del individuo i y $μ$ = ingreso promedio de los individuos.
 
