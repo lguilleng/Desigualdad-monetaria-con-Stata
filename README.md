@@ -342,7 +342,7 @@ Theil = .3066722601117096
 
 Atkinson (1970) propone un índice flexible que permite al analista elegir las ponderaciones de acuerdo a sus juicios de valor y evaluar la sensibilidad de los resultados bajo ponderaciones alternativas.
 
-$$A=1- \frac{[\frac{1}{N}\sum_{i}x_i^{1-\epsilon}]^{\frac{1}{1-\epsilon}}}{\mu}, \epsilon &ge; 0, \epsilon &ne; 1$$
+$$A=1- \frac{[\frac{1}{N}\sum_{i=1}(x_i^{1-\epsilon})]^{\frac{1}{1-\epsilon}}}{\mu}, \epsilon &ge; 0, \epsilon &ne; 1$$
 
 El parámetro $\epsilon$ se interpreta como el grado de “aversión a la desigualdad”: a medida que aumenta el valor de ε, se otorga una ponderación más alta a las transferencias en el extremo inferior de la distribución. Un valor de ε  = 0 implica indiferencia ante la desigualdad y por tanto resulta en A = 0. Cuando ε  tiende a infinito, el índice es sensible solo a la situación del individuo con menores ingresos. Es común calcular este índice con valores de ε de 0.5, 1.0 y 1.5.
 
@@ -493,3 +493,86 @@ Number of strata = 8                                Number of obs = 33,254,164
 Lerman y Yitzhaki (1985 ) muestran que el coeficiente de Gini para el ingreso total, G, se puede representar como :
 
 $$G=\sum_{k=1}^{K}S_kG_kR_k$$
+
+- $S_k$:	participación de la fuente de ingreso k
+- $R_k$:	correlación de gini entre la fuente de ingreso k y el ingreso total
+- $G_k$:	coeficiente de Gini de la fuente de ingreso k
+
+Mediante el uso de este método de descomposición de Gini, se puede estimar el efecto, que un cambio de 1% en los ingresos de la fuente k tendrá sobre la desigualdad total del ingreso. Este efecto viene dado por:
+
+$$\frac{S_kG_kR_k}{G}-S_k$$
+
+Para la descomposición del índice de Gini utilizamos el comendo *descogini*.
+
+```
+ssc install sgini
+```
+
+#### Ejemplo:
+
+Con base en el archivo sumaria-2021, creamos la variable ingreso, que es la suma de los siguientes ingresos:
+
+```
+des ingbruhd ingindhd insedthd ingexthd ingtrahd ingtexhd ingrenhd ingoexhd ingseihd
+
+Variable      Storage   Display   
+    name         type    format  Variable label
+-------------------------------------------------------------------------------------------
+ingbruhd        double  %10.0g   ingreso bruto actividad principal monetaria (dependiente)
+ingindhd        double  %10.0g   ingreso por actividad principal independiente
+insedthd        double  %10.0g   ingreso bruto de la actividad secundaria dependiente
+ingexthd        long    %12.0g   ingresos extraordinarios por trabajo
+ingtrahd        long    %12.0g   ingreso por transferencias corrientes monetarias del país
+ingtexhd        long    %12.0g   ingreso por transferencias corrientes del extranjero
+ingrenhd        long    %12.0g   ingreso por rentas de la propiedad monetaria
+ingoexhd        long    %12.0g   otros ingresos extraordinarios
+ingseihd        double  %10.0g   ingreso neto de la actividad secundaria independiente
+
+g ingreso = (ingbruhd + ingindhd + insedthd + ingexthd + ingtrahd + ingtexhd + ingrenhd + ingoexhd + ingseihd)/12/mieperho
+```
+
+#### ¿Cuál es la contribución de cada fuente de ingreso a la desigualdad total?
+
+```
+. sgini ingbruhd ingindhd insedthd ingexthd ingtrahd ingtexhd ingrenhd ingoexhd ingseihd [pw=facpob], source
+
+Gini coefficient for ingbruhd, ingindhd, insedthd, ingexthd, ingtrahd, ingtexhd, ingrenhd, ingoexhd, ingseihd
+
+-----------------------
+    Variable |      v=2
+-------------+---------
+    ingbruhd |   0.6548
+    ingindhd |   0.7266
+    insedthd |   0.9628
+    ingexthd |   0.8997
+    ingtrahd |   0.6568
+    ingtexhd |   0.9951
+    ingrenhd |   0.9790
+    ingoexhd |   0.8716
+    ingseihd |   0.9411
+-----------------------
+
+Decomposition by source:
+  TOTAL =  ingbruhd +  ingindhd +  insedthd +  ingexthd +  ingtrahd +  ingtexhd +  ingrenhd +  ingoexhd +  ingseihd
+
+
+Parameter: v=2
+--------------------------------------------------------------------------------
+             |    Share   Coeff.    Corr.    Conc.  Contri.  %Contri. Elasticity
+    Variable |        s        g        r    c=g*r    s*g*r   s*g*r/G  s*g*r/G-s
+-------------+------------------------------------------------------------------
+    ingbruhd |   0.5065   0.6548   0.8410   0.5506   0.2789   0.6000    0.0935
+    ingindhd |   0.2424   0.7266   0.4911   0.3568   0.0865   0.1861   -0.0563
+    insedthd |   0.0157   0.9628   0.2432   0.2341   0.0037   0.0079   -0.0078
+    ingexthd |   0.0323   0.8997   0.8113   0.7299   0.0236   0.0507    0.0184
+    ingtrahd |   0.1066   0.6568   0.2931   0.1925   0.0205   0.0441   -0.0625
+    ingtexhd |   0.0020   0.9951   0.3817   0.3798   0.0008   0.0016   -0.0004
+    ingrenhd |   0.0139   0.9790   0.6012   0.5886   0.0082   0.0176    0.0037
+    ingoexhd |   0.0543   0.8716   0.6300   0.5492   0.0298   0.0642    0.0099
+    ingseihd |   0.0263   0.9411   0.5206   0.4899   0.0129   0.0278    0.0014
+-------------+------------------------------------------------------------------
+       TOTAL |   1.0000   0.4648   1.0000   0.4648   0.4648   1.0000    0.0000
+--------------------------------------------------------------------------------
+```
+
+![]()
