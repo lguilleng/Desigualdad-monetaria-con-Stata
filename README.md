@@ -258,3 +258,5 @@ La participación de cuantiles es el porcentaje de la suma del valor de la varia
 
 La participación de algún percentil superior M en el ingreso total, está dada por la siguiente expresión:
 
+$P_M=\frac{\sum_{i \epsilon M}X_i}{\sum_{i}X_i}$
+
