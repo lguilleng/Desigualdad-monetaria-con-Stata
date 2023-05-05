@@ -34,4 +34,25 @@ g facpob=factor07*mieperho
 hist ipcm [fw=int(facpob)], fraction ytitle("Fracción de la población") xtitle("ingreso per cápita mensual") title("Histograma del ingreso percápita mensual de Perú, 2021") note("Fuente: Encuesta Nacional de Hogares, Perú 2021")
 ```
 
-![]()
+![](graficos/histograma-1.JPG)
+
+Debido a la amplia dispersión de la distribución del ingreso en la parte superior, basta con excluir del gráfico los valores correspondientes al 1% o 5% más rico para visualizar de manera más clara su distribución.
+
+Excluyendo el 1%
+
+```
+sum ipcm [w=facpob], detail
+
+                 Ingreso per cápita mensual
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%     104.2556              0
+ 5%     182.7508       34.50232
+(omitido)
+95%     2101.439       26027.59       Skewness       5.389074
+99%     4103.975       28911.83       Kurtosis       70.29174
+
+hist ipcm [fw=int(facpob)] if ipcm<4000, fraction ytitle("Fracción de la población") xtitle("ingreso per cápita mensual") title("Histograma del ingreso percápita mensual de Perú excluyendo el 1% de valores mas altos, 2021", size(medsmall)) note("Fuente: Encuesta Nacional de Hogares, Perú 2021")
+```
+
+
