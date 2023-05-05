@@ -1,5 +1,8 @@
 # Desigualdad monetaria con Stata
 
+![](https://github.com/lguilleng/Desigualdad-monetaria-con-Stata/blob/main/graficos/introduccion.jpg)
+
+
 Medir la desigualdad es necesario para responder a preguntas como:
 
 - ¿es la distribución de ingreso más o menos igualitaria que en el pasado?
@@ -24,3 +27,11 @@ El histograma representa la distribución de una variable. Su construcción cons
 
 El número de segmentos depende de la precisión requerida: entre mayor sea el número de segmentos, más semejante será el histograma a la distribución real de la variable. Sin embargo, reproducir la distribución de la variable en un histograma puede terminar en una gráfica confusa, con muchos saltos, que en últimas no simplifica la información de su variabilidad.
 
+```
+set scheme s1color
+
+g facpob=factor07*mieperho
+hist ipcm [fw=int(facpob)], fraction ytitle("Fracción de la población") xtitle("ingreso per cápita mensual") title("Histograma del ingreso percápita mensual de Perú, 2021") note("Fuente: Encuesta Nacional de Hogares, Perú 2021")
+```
+
+![]()
