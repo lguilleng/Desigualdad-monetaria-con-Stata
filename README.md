@@ -159,3 +159,47 @@ entonces,
 
 x1i < x2i  x2j < x1j  I(x2)  I(x1)
 
+¿Cómo generamos la curva de Lorenz en Stata?
+
+```
+ssc install clorenz
+```
+
+Clorenz puede producir las siguientes curvas distribucionales para una lista dada de variables:
+
+Curvas de Lorenz
+Curvas de Lorenz generalizadas
+Curvas de concentración
+Curvas de concentración generalizadas
+
+Curva de Lorenz del ingreso per cápita mensual del Perú, 2021
+
+```
+clorenz ipcm, hweight(facpob)![image](https://user-images.githubusercontent.com/132394402/236529313-29bf3bff-783e-420f-b192-f531687099d0.png)
+```
+
+![](graficos/lorenz-3.JPG)
+
+Curva de Lorenz del ingreso per cápita mensual en área urbana y rural del Perú, 2021
+
+```
+clorenz ipcm, hweight(facpob) hgroup(area)
+```
+
+![](graficos/lorenz-4.JPG)
+
+Curva de Lorenz del ingreso per cápita mensual en dominios costa, sierra, selva y lima metropolitana del Perú, 2021
+
+```
+recode dominio (1/3=1) (4/6=2) (7=3) (8=4), g(gdominio)
+label define gdominio 1 "Costa" 2 "Sierra" 3 "Selva" 4 "Lima Metropolitana"
+label value gdominio gdominio
+clorenz ipcm, hweight(facpob) hgroup(gdominio)
+```
+
+![](graficos/lorenz-5.JPG)
+
+La propiedad de que las curvas de Lorenz más cercanas a la línea de equidistribución representen distribuciones más igualitarias, ha llevado a la creación de índices de desigualdad que usan la distancia entre la curva de Lorenz y la línea de equidistribución como medida de desigualdad. Uno de estos es el coeficiente de Gini.
+
+## Índices para el análisis de la desigualdad
+
