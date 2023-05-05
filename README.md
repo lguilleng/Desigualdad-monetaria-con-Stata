@@ -319,3 +319,6 @@ gini = .4091186292467571
 
 Theil (1967) propuso un indicador para medir la desigualdad con base en el concepto de entropía, derivado de la teoría de la información. La entropía describe cuánta aleatoriedad hay en una señal o evento; el grado de entropía de un evento es una función decreciente de su probabilidad de ocurrencia. Haciendo un paralelismo entre este concepto y la desigualdad distributiva, Theil propuso el siguiente índice:
 
+$T=\frac{1}{N}\sum_{i}\frac{x_i}{\mu}ln(\frac{x_i}{\mu})$
+
+
