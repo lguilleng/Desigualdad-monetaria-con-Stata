@@ -325,3 +325,25 @@ $T \epsilon [0, lnN]$
 
 donde: $N$ = número total de individuos; $x_i$ = ingreso del individuo i y $μ$ = ingreso promedio de los individuos.
 
+```
+summ ipcm [w=facpob] if ipcm>0
+local media = r(mean)
+
+gen termino = ipcm/`media'*ln(ipcm/`media')
+summ termino [w=facpob]
+local theil = (r(sum)/r(sum_w))
+
+display "Theil = `theil'“
+
+Theil = .3066722601117096
+```
+
+### 4. Índice de Atkinson
+
+Atkinson (1970) propone un índice flexible que permite al analista elegir las ponderaciones de acuerdo a sus juicios de valor y evaluar la sensibilidad de los resultados bajo ponderaciones alternativas.
+
+$A=1- \frac{[\frac{1}{N}\sum_{i}x_i^{1-\epsilon}]^{\frac{1}{1-\epsilon}}}{\mu}$
+
+
+
+{i}x_i
