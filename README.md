@@ -490,4 +490,6 @@ Number of strata = 8                                Number of obs = 33,254,164
 - El coeficiente de Gini es ampliamente utilizado para medir la desigualdad en la distribución del ingreso, la riqueza, gastos, etc.
 - Al descomponer esta medida se puede entender los determinantes de la desigualdad
 
+Lerman y Yitzhaki (1985 ) muestran que el coeficiente de Gini para el ingreso total, G, se puede representar como :
 
+$$G=\sum_{k=1}^{K}S_kG_kR_k$$
