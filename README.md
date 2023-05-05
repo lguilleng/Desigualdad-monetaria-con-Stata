@@ -296,3 +296,26 @@ Este es el índice más usado para medir la desigualdad y fue propuesto por Gini
 
 ![](graficos/gini.JPG)
 
+```
+summ ipcm [w=facpob] if ipcm>0
+* poblacion de referencia
+local obs = r(sum_w)
+* media ingreso
+local media = r(mean)
+sort ipcm
+* suma acumulada del ponderador (población)
+gen aux = sum(facpob) if ipcm>0
+* ubicación promedio en el ranking de ingresos de persona en la población
+gen i = (2*aux - facpob + 1)/2
+gen aux2 = ipcm*(`obs'-i+1)
+summ aux2 [w=facpob]
+local gini = 1 + (1/`obs') - (2/(`media'*`obs'^2)) * r(sum)
+display "gini = `gini'“
+
+gini = .4091186292467571
+```
+
+### 3. Índice de desigualdad de Theil
+
+Theil (1967) propuso un indicador para medir la desigualdad con base en el concepto de entropía, derivado de la teoría de la información. La entropía describe cuánta aleatoriedad hay en una señal o evento; el grado de entropía de un evento es una función decreciente de su probabilidad de ocurrencia. Haciendo un paralelismo entre este concepto y la desigualdad distributiva, Theil propuso el siguiente índice:
+
