@@ -342,7 +342,7 @@ Theil = .3066722601117096
 
 Atkinson (1970) propone un índice flexible que permite al analista elegir las ponderaciones de acuerdo a sus juicios de valor y evaluar la sensibilidad de los resultados bajo ponderaciones alternativas.
 
-$A=1- \frac{[\frac{1}{N}\sum_{i}x_i^{1-\epsilon}]^{\frac{1}{1-\epsilon}}}{\mu}, \epsilon &ge; 0, \epsilon &ne; 1$
+$$A=1- \frac{[\frac{1}{N}\sum_{i}x_i^{1-\epsilon}]^{\frac{1}{1-\epsilon}}}{\mu}, \epsilon &ge; 0, \epsilon &ne; 1$$
 
 El parámetro $\epsilon$ se interpreta como el grado de “aversión a la desigualdad”: a medida que aumenta el valor de ε, se otorga una ponderación más alta a las transferencias en el extremo inferior de la distribución. Un valor de ε  = 0 implica indiferencia ante la desigualdad y por tanto resulta en A = 0. Cuando ε  tiende a infinito, el índice es sensible solo a la situación del individuo con menores ingresos. Es común calcular este índice con valores de ε de 0.5, 1.0 y 1.5.
 
