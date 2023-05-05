@@ -260,3 +260,39 @@ La participación de algún percentil superior M en el ingreso total, está dada
 
 $P_M=\frac{\sum_{i \epsilon M}X_i}{\sum_{i}X_i}$
 
+Es usual también utilizar la participación de algún percentil inferior (por ejemplo, la participación en el ingreso nacional del primer quintil), aunque en este caso debe tenerse en cuenta que un aumento del indicador refleja una caída de la desigualdad y no un incremento.
+
+#### ¿Cuánto representa el ingreso captado por el quintil mas rico respecto al total del ingreso de la población?
+
+```
+tabstat ipcm [w=facpob], by(quintil) s(sum) format(%20.2g)
+
+
+ quintil |                  Sum
+---------+---------------------
+       1 |           1581931418
+       2 |           2874984146
+       3 |           4158851115
+       4 |           6113318656
+       5 |          13076343734
+---------+---------------------
+   Total |          27805429069
+-------------------------------
+
+disp  13076343734/27805429069*100
+47.028024
+```
+
+#### ¿Cuánto representa el ingreso captado por el quintil mas pobre respecto al total del ingreso de la población?
+
+```
+disp 1581931418/27805429069*100
+5.6892897
+```
+
+### 3. El coeficiente de Gini
+
+Este es el índice más usado para medir la desigualdad y fue propuesto por Gini (1921). El coeficiente es igual a la proporción del área entre la curva de Lorenz y la línea de equidistribución (área A del gráfico) con respecto a toda el área por debajo de la línea de equidistribución (correspondiente a A+B en el gráfico, que es igual a 0.5 dada la simetría de los rangos de la curva de Lorenz).
+
+![](graficos/gini.JPG)
+
