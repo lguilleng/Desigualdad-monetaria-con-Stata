@@ -575,4 +575,4 @@ Parameter: v=2
 --------------------------------------------------------------------------------
 ```
 
-![]()
+![](https://github.com/lguilleng/Desigualdad-monetaria-con-Stata/blob/main/graficos/descomposicion%20gini.JPG)
