@@ -203,4 +203,58 @@ El cociente de ingresos $C_{Mm}$ es simplemente el ratio del ingreso medio (o me
 
 $C_{Mm}=\frac{\overline{X}_M}{\overline{X}_m}$
 
+Por lo general, el cociente se calcula para los cuantiles extremos, por ejemplo entre los deciles 1 y 10, para dar cuenta del tamaño que pueden alcanzar las brechas sociales. No obstante, algunos analistas también estudian cocientes de cuantiles intermedios, como por ejemplo el cociente entre el percentil 25 y el 75, con el fin de evitar valores extremos y de complementar el análisis estudiando varios puntos de la distribución.
+
+#### ¿Cuál es el cociente entre el quintil mas rico y el quintil mas pobre cuando la variable de análisis es el ingreso per cápita mensual, en el Perú 2021?
+
+```
+xtile quintil = ipcm [pw=facpob], nq(5)
+tabstat ipcm [w=facpob], by(quintil) s(mean p50)
+
+ quintil |      Mean       p50
+---------+--------------------
+       1 |  237.7142  248.0896
+       2 |  432.0285  430.6814
+       3 |  624.9996  620.5067
+       4 |  918.3585  905.1965
+       5 |  1966.036   1562.19
+---------+--------------------
+   Total |  835.7143  620.4998
+------------------------------
+
+disp 1966.036/237.7142
+8.2705871
+```
+
+#### ¿Cuál es el cociente entre el decil mas rico y el quintil mas pobre cuando la variable de análisis es el ingreso per cápita mensual, en el Perú 2021?
+
+```
+xtile decil = ipcm [pw=facpob], nq(10)
+tabstat ipcm [w=facpob], by(decil) s(mean p50)
+
+   decil |      Mean       p50
+---------+--------------------
+       1 |  175.8804  182.7508
+       2 |  299.5442  301.0167
+       3 |  388.3011   388.488
+       4 |  475.7487  474.7239
+       5 |  568.5087  568.4942
+       6 |  681.4806  680.8495
+       7 |  822.7414  822.2264
+       8 |  1013.878  1008.262
+       9 |   1327.56  1312.078
+      10 |  2604.136  2101.439
+---------+--------------------
+   Total |  835.7143  620.4998
+------------------------------
+
+disp 2604.136/175.8804
+14.806289
+```
+
+### 2. Participación de cuantiles
+
+La participación de cuantiles es el porcentaje de la suma del valor de la variable de análisis (x) generalmente del cuantil superior o inferior, con respecto a la suma de para toda la población.
+
+La participación de algún percentil superior M en el ingreso total, está dada por la siguiente expresión:
 
