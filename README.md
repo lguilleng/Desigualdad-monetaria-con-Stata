@@ -153,12 +153,12 @@ Si una distribución domina en el sentido de Lorenz a otra, entonces todos los �
 ssc install clorenz
 ```
 
-#### Clorenz puede producir las siguientes curvas distribucionales para una lista dada de variables:
+Clorenz puede producir las siguientes curvas distribucionales para una lista dada de variables:
 
-Curvas de Lorenz
-Curvas de Lorenz generalizadas
-Curvas de concentración
-Curvas de concentración generalizadas
+- Curvas de Lorenz
+- Curvas de Lorenz generalizadas
+- Curvas de concentración
+- Curvas de concentración generalizadas
 
 #### Curva de Lorenz del ingreso per cápita mensual del Perú, 2021
 
@@ -199,7 +199,8 @@ Después de ordenar a la población según su nivel de ingreso per cápita, por 
 
 El indicador consiste en calcular el cociente entre la media de la variable de análisis x entre dos cuantiles, generalmente situados en lugares opuestos en la distribución.
 
-El cociente de ingresos CMm es simplemente el ratio del ingreso medio (o mediano) del percentil superior M sobre el ingreso promedio (o mediano) del percentil inferior m.}
+El cociente de ingresos $C_{Mm}$ es simplemente el ratio del ingreso medio (o mediano) del percentil superior $M$ sobre el ingreso promedio (o mediano) del percentil inferior $m$.
 
-$overline{X}$
-  $ _{M}$ /  $X_{m}$
+$C_{Mm}=\frac{\overline{X}_M}{\overline{X}_m}$
+
+
