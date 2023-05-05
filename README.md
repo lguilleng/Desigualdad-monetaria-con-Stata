@@ -381,3 +381,113 @@ Muestra las siguientes medidas: desviación media relativa, coeficiente de varia
 #### INEQUAL7
 Calcula una serie de medidas de desigualdad. Es una versión revisada y mejorada de "inequal".
 Las medidas de desigualdad calculadas son: la "desviación media relativa", el "coeficiente de variación", la "desviación estándar de los registros", el "índice de Gini", el "índice de Mehran", el "índice de Piesch", el "índice de Kakwani", el "índice de entropía de Theil", la "desviación media logarítmica" y la "medida de entropía generalizada" con parámetros de sensibilidad -1 y 2.
+
+```
+* instalamos los comandos
+
+ssc install inequal
+ssc install inequal7
+
+inequal ipcm [fw=int(facpob)]
+
+inequality measures of ipcm
+------------------------------------------------------------------------------
+relative mean deviation                .29340571
+coefficient of variation               .97989317
+standard deviation of logs             .74608171
+Gini coefficient                       .40910131
+Mehran measure                         .53382619
+Piesch measure                         .34673889
+Kakwani measure                        .14502656
+Theil entropy measure                  .30664945
+Theil mean log deviation measure       .28892815
+------------------------------------------------------------------------------
+
+inequal7 ipcm [w=facpob]
+(analytic weights assumed)
+Warning: ipcm has 1 values == 0 *used* in calculations
+    (except for SD logs, GE(-1), GE(0) (Mean log-deviation) and GE(1) (Theil)).
+
+-----------------------------------------------------
+                     Inequality measures |       ipcm
+-----------------------------------------+-----------
+                 Relative mean deviation |    0.29342
+                Coefficient of variation |    0.97997
+              Standard deviation of logs |    0.74612
+                        Gini coefficient |    0.40912
+                          Mehran measure |    0.53389
+                          Piesch measure |    0.34674
+                         Kakwani measure |    0.14504
+              Theil index (GE(a), a = 1) |    0.30667
+       Mean Log Deviation (GE(a), a = 0) |    0.28896
+           Entropy index (GE(a), a = -1) |    0.38353
+Half (Coeff.Var. squared) (GE(a), a = 2) |    0.48016
+-----------------------------------------------------
+```
+
+#### ¿Cómo calculamos sus errores estándar?
+
+Utilizaremos bootstrap, que es un método de simulación mediante remuestreo que se puede usar para estimar desviaciones estándar de un estadístico, intervalos de confianza de ese estadístico o incluso en contraste de hipótesis.
+
+Debemos utilizar un comando que estime el índice de desigualdad requerido y que este retorne los valores es escalares que puedan ser utilizados por el comando bootstrap de Stata. La ayuda del comando inequal7 nos indica lo siguiente:
+
+```
+Saved Results
+
+For historical reasons, inequal7 returns results in r() locals and in global macros.  However, to allow using inequal7 with the bootstrap or jkknife commands, results can be saved in r() scalars by specifying the returnscalars option.
+
+[Important notice: When multiple variables are entered in varlist, returned results are the inequality measures of the last variable listed.]
+
+    r(rmd) and S_1 contain the "relative mean deviation"
+    r(cov) and S_2 contain the "coefficient of variation"
+    r(sdl) and S_3 contain the "standard deviation of logs"
+    r(gini) and S_4 contain the "Gini coefficient"'
+    r(mehran) and S_5 contain the "Mehran index"
+    r(piesch) and S_6 contain the "Piesch index"
+    r(kakwani) and S_7 contain the "Kakwani index"
+    r(theil) and S_8 contain the "Theil index (or generalised entropy measure with sensitivity parameter 1)"
+    r(mld) and S_9 contain the "Mean Log Deviation (or generalised entropy measure with sensitivity parameter 0)"
+    r(ge_1) and S_10 contain the "Generalised entropy measure with sensitivity parameter -1"
+    r(ge2) and S_11 contain the "Generalised entropy measure with sensitivity parameter 2"
+```
+
+Para estimar el índice de Gini y su erros estándar utilizamos el siguiente comando:
+
+```
+bootstrap gini=real(r(gini)), reps(200) force strata(estrato) cluster(conglome): inequal7 ipcm [w=int(facpob)]
+(running inequal7 on estimation sample)
+
+warning: inequal7 does not set e(sample), so no observations will be excluded from the resampling because of missing values or other reasons. To exclude observations, press Break, save the data, drop any observations that are to be excluded, and rerun bootstrap.
+
+Bootstrap replications (200)
+----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
+..................................................    50
+..................................................   100
+..................................................   150
+..................................................   200
+
+Bootstrap results
+
+Number of strata = 8                                Number of obs = 33,254,164
+                                                    Replications  =        200
+
+      Command: inequal7 ipcm [fweight= int(facpob)]
+         gini: real(r(gini))
+
+                            (Replications based on 5,359 clusters in conglome)
+------------------------------------------------------------------------------
+             |   Observed   Bootstrap                         Normal-based
+             | coefficient  std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+        gini |   .4091042   .0036423   112.32   0.000     .4019654    .4162431
+------------------------------------------------------------------------------
+```
+
+## Descomposición del índice de Gini
+
+¿Por qué descomponerlo?
+
+- El coeficiente de Gini es ampliamente utilizado para medir la desigualdad en la distribución del ingreso, la riqueza, gastos, etc.
+- Al descomponer esta medida se puede entender los determinantes de la desigualdad
+
+
