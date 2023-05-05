@@ -147,18 +147,6 @@ La curva de Lorenz es una representación de la distribución del ingreso de una
 
 Si una distribución domina en el sentido de Lorenz a otra, entonces todos los índices de desigualdad que cumplen la propiedad de Dalton-Pigou en sentido estricto reportan una menor desigualdad para la distribución dominante. Esta propiedad es muy útil puesto que, si existe dominancia de Lorenz entre dos distribuciones, es posible determinar sin ambigüedad cuál distribución es más equitativa, independiente del índice elegido para cuantificar la desigualdad. La magnitud de la diferencia sí depende del índice de desigualdad elegido.
 
-#### Propiedad de Dalton-Pigou
-
-Esta propiedad exige que todo indicador I(x) cumpla con el principio de las transferencias de Dalton-Pigou: ante toda transferencia igualadora el índice debe reflejar una caída en el nivel de desigualdad (o al menos no aumentar). Se trata de la propiedad central que distingue a un indicador de desigualdad.
-
-Formalmente, para todo par de distribuciones x1, x2 y un escalar  tal que
-
-x2i = x1i + , x2j = x1j - ,   x2k = x1k   para todo k  i , j;
-
-entonces,
-
-x1i < x2i  x2j < x1j  I(x2)  I(x1)
-
 ¿Cómo generamos la curva de Lorenz en Stata?
 
 ```
@@ -211,5 +199,7 @@ Después de ordenar a la población según su nivel de ingreso per cápita, por 
 
 El indicador consiste en calcular el cociente entre la media de la variable de análisis x entre dos cuantiles, generalmente situados en lugares opuestos en la distribución.
 
-El cociente de ingresos CMm es simplemente el ratio del ingreso medio (o mediano) del percentil superior M sobre el ingreso promedio (o mediano) del percentil inferior m.
+El cociente de ingresos CMm es simplemente el ratio del ingreso medio (o mediano) del percentil superior M sobre el ingreso promedio (o mediano) del percentil inferior m.}
 
+$overline{X}$
+  $ _{M}$ /  $X_{m}$
