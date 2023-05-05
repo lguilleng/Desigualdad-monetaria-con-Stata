@@ -137,3 +137,25 @@ graph box ipcm [fw=int(facpob)] if ipcm<2000, ytitle("ingreso per cápita mensua
 graph box ipcm [fw=int(facpob)] if ipcm<2000, over(area) ytitle("ingreso per cápita mensual") title("Distribución del ingreso percápita mensual de Perú por área", size(medsmall)) subtitle("excluyendo el 5% de valores mas altos, 2021", size(medsmall)) note("Fuente: Encuesta Nacional de Hogares, Perú 2021")
 ```
 ![](graficos/boxplot-4.JPG)
+
+### 4. La curva de Lorenz
+
+La curva de Lorenz es una representación de la distribución del ingreso de una población (Lorenz, 1905). Esta curva tiene en el eje horizontal el porcentaje acumulado de individuos desde el más pobre hasta el más rico y en el eje vertical el porcentaje de ingreso perteneciente a cada porcentaje acumulado de la población.
+
+![](graficos/lorenz-1.JPG)
+![](graficos/lorenz-2.JPG)
+
+Si una distribución domina en el sentido de Lorenz a otra, entonces todos los índices de desigualdad que cumplen la propiedad de Dalton-Pigou en sentido estricto reportan una menor desigualdad para la distribución dominante. Esta propiedad es muy útil puesto que, si existe dominancia de Lorenz entre dos distribuciones, es posible determinar sin ambigüedad cuál distribución es más equitativa, independiente del índice elegido para cuantificar la desigualdad. La magnitud de la diferencia sí depende del índice de desigualdad elegido.
+
+#### Propiedad de Dalton-Pigou
+
+Esta propiedad exige que todo indicador I(x) cumpla con el principio de las transferencias de Dalton-Pigou: ante toda transferencia igualadora el índice debe reflejar una caída en el nivel de desigualdad (o al menos no aumentar). Se trata de la propiedad central que distingue a un indicador de desigualdad.
+
+Formalmente, para todo par de distribuciones x1, x2 y un escalar  tal que
+
+x2i = x1i + , x2j = x1j - ,   x2k = x1k   para todo k  i , j;
+
+entonces,
+
+x1i < x2i  x2j < x1j  I(x2)  I(x1)
+
