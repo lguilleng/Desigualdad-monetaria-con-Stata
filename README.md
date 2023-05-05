@@ -101,4 +101,4 @@ cumul ipcm [fw=int(facpob)], gen(cipcm)
 twoway line cipcm ipcm [fw=int(facpob)], sort title("Función acumulada del ingreso per cápita mensual en el Perú, 2021",size(medsmall)) ytitle("Proporción acumulada de la población") xtitle("ingreso per cápita mensual")
 ```
 
-![](graficos/distribucion acumulada-1.JPG)
+
