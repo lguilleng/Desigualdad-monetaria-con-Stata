@@ -1,8 +1,4 @@
-# Desigualdad monetaria con Stata
-
-![](https://github.com/lguilleng/Desigualdad-monetaria-con-Stata/blob/main/graficos/introduccion.jpg)
-
-
+![](graficos/cabecera.JPG)
 Medir la desigualdad es necesario para responder a preguntas como:
 
 - ¿es la distribución de ingreso más o menos igualitaria que en el pasado?
