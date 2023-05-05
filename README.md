@@ -342,8 +342,8 @@ Theil = .3066722601117096
 
 Atkinson (1970) propone un índice flexible que permite al analista elegir las ponderaciones de acuerdo a sus juicios de valor y evaluar la sensibilidad de los resultados bajo ponderaciones alternativas.
 
-$A=1- \frac{[\frac{1}{N}\sum_{i}x_i^{1-\epsilon}]^{\frac{1}{1-\epsilon}}}{\mu}$
+$A=1- \frac{[\frac{1}{N}\sum_{i}x_i^{1-\epsilon}]^{\frac{1}{1-\epsilon}}}{\mu}, \epsilon &ge; 0, \epsilon &ne 1$
 
 
 
-{i}x_i
+
